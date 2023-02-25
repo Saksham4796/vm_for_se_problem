@@ -13,7 +13,7 @@ gcloud compute instances stop --project=PROJECT_ID --zone=ZONE $(gcloud compute 
 #### GCloud command to get into the VM Environment
 gcloud compute ssh master-instance --zone us-central1-a
 
-#### GCloud command to list of the created instances
+#### GCloud command to list all the created instances
 gcloud compute instances list
 
 #### GCloud command to copy a file from local machine to VM Instance
@@ -21,3 +21,6 @@ gcloud compute scp test.py saksham@master-instance:/home/saksham --zone us-centr
 
 #### GCloud command to upload a folder from the local machine to VM Instance
 gcloud compute scp --recurse ../Industrial_Problem_Statement saksham@worker-instance-1:~/ --zone us-west1-a
+
+#### GCloud command to delete a VM instance
+gcloud compute instances delete master-instance --zone=us-central1-a
