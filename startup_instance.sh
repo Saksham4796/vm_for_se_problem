@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt-get update
 sudo apt-get install -y python3 python3-pip git
 pip install redis
@@ -45,3 +47,24 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://a
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
+
+
+# Install JAVA
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get update && sudo apt-get -y install default-jre-headless && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+
+# Set JAVA Environment
+
+export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
+
+sudo apt-get update
+sudo apt-get install -y wget
+
+# Download Spark and set Environment variables
+sudo mkdir -p /opt/spark \
+	&& cd /opt/spark \
+	&& sudo wget https://dlcdn.apache.org/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz \
+	&& sudo tar xvf spark-3.3.2-bin-hadoop3.tgz
+
+export SPARK_HOME=/opt/spark/spark-3.3.2-bin-hadoop3
+export PATH=$PATH:$SPARK_HOME/bin
