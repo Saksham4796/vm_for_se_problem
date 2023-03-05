@@ -1,3 +1,5 @@
 # Virtual Machine Instance for Software Engineering Problem
 
 This repository creates virtual machine instances on Google Cloud Platform. The python script `create_VM_instance_Master_Node.py` creates a VM Instance which can act as a Master Node(or Contral Panel) for Kubernetes. Similarly, the python script `create_VM_instance_Worker_Node.py` creates VM instance which acts as a worker node for the Kubernetes. The shell script `startup_intance.sh` exectutes all the commands on the created VM Instance and thus installs git, python3(along with it's supporting libraries), docker and kubernetes on the both master and worker node. The shell script `upload_application.sh` uploads application repo present on the local device to the VM instance running on google cloud.
+
+When a fresh VM instance is a created, the enviornment variables need to be set. Hence, for that `export_commands.sh` file is uploaded to the virtual machine instance using `upload_export_files_to_gcp.sh` file. When the VM instance is created, execute command `source export_commands.sh` and exit it. Restart the same VM, now all the environment variables are set. 
